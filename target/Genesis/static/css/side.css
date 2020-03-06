@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#outRight {
+    width: 320px;
+    height: 1480px;
+    float: right;
+    position: relative;
+    margin-top: 20px;
+    padding-left: 15px;
+    margin-right: 50px;
+    border: 1px solid #000;
+}
+
+.sep20 {
+    width: 270px;
+    height: 20px;
+}
+
+.box {
+    width: 270px;
+    height: 270px;
+    margin-top: 50px;
+}
+
+.box2 {
+    width: 270px;
+    height: 270px;
+    margin-top: -100px;
+}
+
+.cell {
+    width: 270px;
+    height: 30px;
+    padding-left: 40px;
+}
+
+.sep5 {
+    width: 270px;
+    height: 5px;
+}
+
+.inner {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 60px;
+    left: 35px;
+}
+
+#inner {
+    margin-top: -120px;
+}
+
+#center {
+    width: 220px;
+    height: 220px;
+}
+
+#hideCenter {
+    width: 220px;
+    height: 220px;
+    margin-left: 30px;
+}
+
+#imgDiv {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+}
+
+.super normal button {
+    width: 180px;
+    height: 180px;
+    border: 1px solid #000;
+}
+
+.sep10 {
+    width: 270px;
+    height: 10px;
+}
+
+.sep70 {
+    width: 270px;
+    height: 70px;
+}
+
+#TopicHot {
+    width: 300px;
+    height: 730px;
+}
+
+#cell {
+    width: 270px;
+    height: auto;
+    overflow-y: auto;
+    margin-left: 15px;
+}
+
+.fade {
+    margin-left: 68px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+#hotUl{
+    height: 600px;
+    font-size: 20px;
+    overflow-y: auto;
+    background-image: url("../../static/img/book.png");
+}
+#hotUl li{
+    width: 270px;
+    height: 40px;
+    list-style-image: none;
+    list-style-type: none;
+    border-right-color: #000000;
+    box-sizing: border-box;
+    -o-text-overflow:ellipsis;
+    text-overflow:  ellipsis;
+    overflow: hidden;
+    text-decoration:underline;
+}
+
+#hotUl li a{
+    color: #000;
+    text-decoration: none;
+    margin: 0px;
+    font-size: 20px;
+    padding: 8px 10px;
+    display: block;
+}
+
+#hotUl li a:hover{
+    background-color: #0099CC;
+}

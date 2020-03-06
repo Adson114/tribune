@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.dao.ITopicDao">
+
+    <resultMap id="allInfo" type="com.hz.bean.Topic">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="topicId" property="topicId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="modifyTime" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="publishTime" property="publishTime" jdbcType="TIMESTAMP"/>
+        <result column="delTopicTime" property="delTopicTime" jdbcType="TIMESTAMP"/>
+        <result column="topicState" property="topicState" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="topUserId" property="topUserId" jdbcType="INTEGER"/>
+        <result column="click" property="click" jdbcType="INTEGER"/>
+        <result column="tabId" property="tabId" jdbcType="INTEGER"/>
+        <result column="good" property="good" jdbcType="INTEGER"/>
+        <association property="user" javaType="com.hz.bean.User">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="userId" property="uerId" jdbcType="INTEGER"/>
+            <result column="userName" property="userName" jdbcType="VARCHAR"/>
+            <result column="face" property="face" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+
+    <resultMap id="partInfo" type="com.hz.bean.Topic">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="topicId" property="topicId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="modifyTime" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="publishTime" property="publishTime" jdbcType="TIMESTAMP"/>
+        <result column="delTopicTime" property="delTopicTime" jdbcType="TIMESTAMP"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="topUserId" property="topUserId" jdbcType="INTEGER"/>
+        <result column="click" property="click" jdbcType="INTEGER"/>
+        <result column="tabId" property="tabId" jdbcType="INTEGER"/>
+        <result column="good" property="good" jdbcType="INTEGER"/>
+        <result column="topicState" property="topicState" jdbcType="INTEGER"/>
+        <association property="user" javaType="com.hz.bean.User">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="userId" property="uerId" jdbcType="INTEGER"/>
+            <result column="userName" property="userName" jdbcType="VARCHAR"/>
+            <result column="face" property="face" jdbcType="VARCHAR"/>
+        </association>
+        <association property="tab" javaType="com.hz.bean.Tab">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="tabId" property="tabId" jdbcType="INTEGER"/>
+            <result column="tabName" property="tabName" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <select id="queryContent" resultMap="allInfo">
+    select topic.topicId,topic.title,user.userName,user.face,topic.modifyTime,topic.publishTime,topic.click,topic.content from topic left join user on topic.topUserId=user.userId where topic.topicState=0 order by topic.publishTime desc
+</select>
+
+    <select id="queryTabSon" resultMap="partInfo">
+    select topic.topicId,topic.title,user.userName,user.face,topic.modifyTime,topic.publishTime,topic.click from topic left join user on topic.topUserId=user.userId left join tab on topic.tabId=tab.tabId where tab.tabId=#{tabId} and topic.topicState=0 order by topic.publishTime desc
+</select>
+
+    <select id="queryTopicTitle" parameterType="java.lang.Integer" resultType="com.hz.bean.Topic">
+    select topic.topicId,topic.content,topic.title,topic.publishTime,topic.modifyTime,topic.click,user.userName from topic left join user on topic.topUserId=user.userId where user.userId=#{userId} and topic.topicState=0
+</select>
+
+        <insert id="insertContain" parameterType="com.hz.bean.Topic">
+         insert into topic  (content, modifyTime,publishTime, title, topUserId,tabId) values(#{content},#{modifyTime},#{publishTime},#{title},#{topUserId},#{tabId})
+    </insert>
+
+<!--    <select id="queryUserId" resultType="java.lang.Integer">-->
+<!--    select topic.topUserId from topic left join user on topic.topUserId=user.userId where user.userName=#{userName} limit 1-->
+<!--</select>-->
+
+<!--    <select id="queryTitle" parameterType="java.lang.Integer" resultType="String">-->
+<!--    select topic.title from topic left join reply on topic.topicId=reply.topicId where reply.userId=#{userId}-->
+<!--</select>-->
+
+    <select id="detailContent"  resultMap="allInfo">
+    select topic.topicId,topic.title,topic.content,topic.publishTime,topic.click,user.userName from topic left join user on topic.topUserId=user.userId where topic.topicId=#{topicId} and topic.topicState=0
+    </select>
+
+<!--    <select id="queryTopicId" resultType="java.lang.Integer">-->
+<!--    select topicId from topic where title=#{title}-->
+<!--</select>-->
+
+
+    <!--删除准备修改-->
+<!--    <delete id="removeTopic" parameterType="com.hz.bean.Topic">-->
+<!--        delete topic,reply from topic left join reply on topic.topicId=reply.topicId where topic.topicId=#{topicId}-->
+<!--    </delete>-->
+
+    <update id="removeTopic" parameterType="com.hz.bean.Topic">
+        update topic set topicState=1 ,delTopicTime=#{delTopicTime} where topicId=#{topicId}
+    </update>
+
+   <update id="updateClick" parameterType="java.lang.Integer">
+       update topic set click=click+1 where topicId=#{topicId} and topicState=0
+   </update>
+
+    <select id="adminToTopic" resultMap="partInfo">
+        select topic.topicId,topic.title,topic.content,user.userName,topic.good ,tab.tabName,topic.publishTime from topic left join user on topic.topUserId=user.userId left join tab on topic.tabId=tab.tabId where topic.topicState=0 order by topic.publishTime desc
+    </select>
+
+    <update id="makeSure" parameterType="com.hz.bean.Topic">
+        update topic set good=1 ,modifyTime=#{modifyTime} where topicId=#{topicId} and topicState=0
+    </update>
+
+    <update id="canxel" parameterType="com.hz.bean.Topic">
+        update topic set good=0 ,modifyTime=#{modifyTime} where topicId=#{topicId} and topicState=0
+    </update>
+
+    <select id="queryGood" parameterType="java.lang.Integer" resultType="com.hz.bean.Topic">
+        select *from topic where good=#{good} and topicState=0
+    </select>
+</mapper>

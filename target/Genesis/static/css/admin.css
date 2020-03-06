@@ -1,0 +1,184 @@
+/* adminReply*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#adminContent{
+    margin-left: 150px;
+}
+
+#adminRight {
+    width: 1200px;
+    height: 900px;
+    margin-left: 360px;
+    margin-top: -700px;
+    border: 1px solid #000;
+}
+
+.aSep20 {
+    width: 100px;
+    height: 20px;
+}
+
+#third {
+    width: 1200px;
+    height: 800px;
+    overflow-y: auto;
+}
+
+#replyTable {
+    width: 1150px;
+    height: 900px;
+    margin-top: 50px;
+    /*overflow-y: auto;*/
+}
+
+#textReplyTable {
+    width: 1000px;
+    margin-left: 100px;
+    font-family: verdana,arial,sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    table-layout:fixed;
+}
+
+#textReplyTable td{
+    height: 30px;
+    text-align: center;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#textReplyTable th{
+    height: 40px;
+    background: #d2d2d2;
+}
+
+
+/* adminTab*/
+#fourth{
+    width: 1100px;
+    height: 800px;
+    overflow-y: auto;
+}
+
+.createDiv {
+    margin-left: 50px;
+}
+
+#textTabTable {
+    width: 800px;
+    margin-left: 50px;
+    text-align: center;
+}
+
+#tabTable {
+    width: 1000px;
+    height: 900px;
+    overflow-y: auto;
+    margin-left: 175px;
+}
+
+#increaseTab{
+    width: 200px;
+    height: 45px;
+    margin-left: 60px;
+    font-size: 25px;
+}
+
+#createTabTable{
+    width: 600px;
+    height: 200px;
+    margin-top: 30px;
+    margin-left: 275px;
+    text-align: center;
+}
+
+.tabName{
+    height: 45px;
+    background: #d2d2d2;
+    text-align: center;
+}
+
+
+/* adminTopic*/
+#second {
+    width: 1200px;
+    height: 800px;
+    overflow-y: auto;
+}
+
+#topicTable {
+    width: 1200px;
+    height: 900px;
+    margin-top: 50px;
+    overflow-y: auto;
+}
+
+#textTopicTable {
+    width: 1100px;
+    margin-left: 50px;
+    font-family: verdana,arial,sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    table-layout:fixed;
+}
+
+
+/* adminUser*/
+#first {
+    height: 900px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+#createUserTable {
+    width: 900px;
+    height: 120px;
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+#userTable {
+    height: 900px;
+    /*overflow-y: auto;*/
+}
+
+#textUserTable {
+    width: 1100px;
+    margin-left: 50px;
+    text-align: center;
+    table-layout:fixed;
+    border: 1px solid #000;
+    border-collapse: collapse;
+
+}
+
+.adIf{
+    height: 40px;
+    background: #d2d2d2;
+}
+
+/* adminBar*/
+.aSep30{
+    width: 100px;
+    height: 30px;
+}
+
+#adminLeft{
+    width: 200px;
+    height: 700px;
+    margin-left: 50px;
+    border: 1px solid #000;
+}
+
+#imgDiv{
+    width: 100px;
+    height: 130px;
+    margin-left: 50px;
+    margin-top: 50px;
+    text-align:center;
+}

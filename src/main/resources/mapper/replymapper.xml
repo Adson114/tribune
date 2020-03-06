@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.dao.IReplyDao">
+
+
+    <resultMap id="replyAndUser" type="com.hz.bean.Reply">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="replyId" property="replyId" jdbcType="INTEGER"/>
+        <result column="modifyTime" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="publishTime" property="publishTime" jdbcType="TIMESTAMP"/>
+        <result column="delReplyTime" property="delReplyTime" jdbcType="TIMESTAMP"/>
+        <result column="replyState" property="replyState" jdbcType="INTEGER"/>
+        <result column="topicId" property="topicId" jdbcType="INTEGER"/>
+        <result column="userId" property="userId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <association property="user" javaType="com.hz.bean.User">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="replyUser" type="com.hz.bean.Reply">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="replyId" property="replyId" jdbcType="INTEGER"/>
+        <result column="modifyTime" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="publishTime" property="publishTime" jdbcType="TIMESTAMP"/>
+        <result column="topicId" property="topicId" jdbcType="INTEGER"/>
+        <result column="userId" property="userId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="delReplyTime" property="delReplyTime" jdbcType="TIMESTAMP"/>
+        <result column="replyState" property="replyState" jdbcType="INTEGER"/>
+        <association property="user" javaType="com.hz.bean.User">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="userId" property="userId" jdbcType="INTEGER"/>
+            <result column="userName" property="userName" jdbcType="VARCHAR"/>
+            <result column="name2" property="name2" jdbcType="VARCHAR"/>
+        </association>
+        <association property="topic" javaType="com.hz.bean.Topic">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="title" property="title" jdbcType="VARCHAR"/>
+            <result column="topicId" property="topicId" jdbcType="INTEGER"/>
+            <result column="topUserId" property="topUserId" jdbcType="INTEGER"/>
+        </association>
+    </resultMap>
+
+    <select id="queryTopicReply" parameterType="java.lang.Integer" resultMap="replyUser">
+    select topic.title,topic.topicId,user.userName,reply.content,reply.modifyTime from reply join topic on reply.topicId=topic.topicId join user on topic.topUserId=user.userId where reply.userId=#{userId} and reply.replyState=0
+</select>
+
+
+
+    <select id="detailReply"  resultMap="replyAndUser">
+    select user.userName,reply.content,reply.modifyTime from reply left join user on reply.userId=user.userId where reply.topicId=#{topicId} and reply.replyState=0
+</select>
+
+    <select id="countReply" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(*) from reply where topicId=#{topicId} and reply.replyState=0
+    </select>
+
+    <insert id="insertReply" parameterType="com.hz.bean.Reply">
+    insert into reply (modifyTime,publishTime,topicId,userId,content) values (#{modifyTime},#{publishTime},#{topicId},#{userId},#{content})
+    </insert>
+
+    <select id="adminToReply" resultMap="replyUser">
+        select reply.replyId,user.userName ,topic.title,reply.content from reply left join topic on reply.topicId=topic.topicId left join  user  on reply.userId=user.userId where reply.replyState=0
+    </select>
+
+    <!--删除 需要修改-->
+<!--    <delete id="delReply" parameterType="com.hz.bean.Reply">-->
+<!--        delete from reply where replyId=#{replyId}-->
+<!--    </delete>-->
+    <update id="delReply" parameterType="com.hz.bean.Reply">
+        update reply set replyState=1,delReplyTime=#{delReplyTime} where replyId=#{replyId}
+    </update>
+
+    <select id="test" resultMap="replyUser" parameterType="java.lang.Integer">
+        select reply.replyId,a.userName ,topic.title,topic.topicId,reply.content,b.userName as name2 ,reply.modifyTime from reply left join topic on reply.topicId=topic.topicId left join user a  on topic.topUserId=a.userId left join user b on reply.userId=b.userId where b.userId=#{userId} and reply.replyState=0
+    </select>
+
+    <!--删除 需要修改-->
+<!--    <delete id="removeReply" parameterType="com.hz.bean.Reply">-->
+<!--        delete from reply where replyId=#{replyId}-->
+<!--    </delete>-->
+    <update id="removeReply" parameterType="com.hz.bean.Reply">
+        update reply set replyState=1,delReplyTime=#{delReplyTime} where replyId=#{replyId}
+    </update>
+
+
+</mapper>

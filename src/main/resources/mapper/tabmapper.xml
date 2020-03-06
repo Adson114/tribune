@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.dao.ITabDao">
+
+    <select id="queryTab" resultType="com.hz.bean.Tab">
+    select * from tab where tabState=0
+</select>
+
+    <insert id="addTab" parameterType="com.hz.bean.Tab">
+        insert into tab (tabName,tabNameEn,createTime) values (#{tabName},#{tabNameEn},#{createTime})
+    </insert>
+
+    <select id="queryTabName" resultType="String">
+        select tabName from tab
+    </select>
+
+    <!--删除修改-->
+<!--    <delete id="delTab" parameterType="com.hz.bean.Tab">-->
+<!--        delete from tab where tabId=#{tabId}-->
+<!--    </delete>-->
+
+    <update id="delTab" parameterType="com.hz.bean.Tab">
+        update tab set tabState=1,delTabTime=#{delTabTime} where tabId=#{tabId}
+    </update>
+
+</mapper>

@@ -1,0 +1,77 @@
+/*login*/
+*{
+    margin: 0;
+    padding: 0;
+}
+#background{
+    width: 100%;
+    height: 100%;
+    background-image: url("../../static/img/view.jpg");
+}
+#outMain{
+    width: 500px;
+    height: 600px;
+    margin: auto;
+    padding-top: 200px;
+}
+#innerMain{
+    width: 500px;
+    margin: 0 auto;
+}
+
+#loginDiv{
+    width:426px;
+    margin-left: 120px;
+}
+#loginInput{
+    height:30px;
+    width:350px;
+    background-color:red;
+}
+
+/*register*/
+.p{
+    color:red;
+    margin-left:20px;
+    display:inline-block;
+}
+.c{
+    color:red;
+    margin-left:4px;
+    display:inline-block;
+}
+.l{
+    font-size:20px;
+    font-weight: 700;
+    color: #000;
+}
+.d{
+    height:35px;
+    width:300px;
+    display:inline;
+}
+.i{
+    height:30px;
+    width:300px;
+}
+
+#agree{
+    margin-left:100px;
+    display:inline-block;
+}
+#agree2{
+    margin-left:100px;
+    height:30px;
+    width:300px;
+    background-color:red;
+    display:inline-block;
+}
+
+#innerDiv{
+    width:500px;
+    float:left;
+    margin:0 20px;
+}
+#newUserDiv{
+    font-size:35px;
+}

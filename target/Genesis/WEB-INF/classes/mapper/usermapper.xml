@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.dao.IUserDao">
+
+    <insert id="intoRegister" parameterType="com.hz.bean.User">
+     insert into user  (userName, trueName, password,sex, mobile, email,regTime) values(#{userName},#{trueName},#{password},#{sex},#{mobile},#{email},#{regTime})
+</insert>
+
+    <select id="queryUserName" resultType="String">
+    select userName from user
+</select>
+
+    <select id="queryUserId" resultType="java.lang.Integer">
+    select user.UserId from user where userName=#{userName} and userState=0
+</select>
+
+    <select id="queryUser" resultType="String">
+    select user.face from user where userName=#{userName} and userState=0
+</select>
+
+    <select id="doLogin" resultType="com.hz.bean.User">
+    select * from user where userName=#{userName} and password=#{password} and userState=0
+</select>
+
+    <select id="doLoginAdmin" resultType="com.hz.bean.User">
+    select * from user where userName=#{userName} and password=#{password} and type=#{type} and userState=0
+</select>
+
+    <select id="toChangeInfo" resultType="com.hz.bean.User" parameterType="Integer">
+    select userId,userName,trueName,regTime,email,mobile,face ,declaration from user where userId=#{userId} and userState=0
+</select>
+
+    <update id="upLoad" parameterType="com.hz.bean.User">
+     update user set face=#{face},updateTime=#{updateTime} where userName=#{userName} and userState=0
+</update>
+
+    <select id="queryUserInfo" resultType="com.hz.bean.User">
+    select * from user where userName=#{userName} and userState=0
+</select>
+
+    <select id="adminQueryUser" resultType="com.hz.bean.User">
+    select * from user where userState=0
+</select>
+
+    <update id="updateUser" parameterType="com.hz.bean.User">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName!=null and userName!=''">
+                userName=#{userName},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="mobile!=null and mobile!=''">
+                mobile=#{mobile},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex=#{sex},
+            </if>
+            updateTime=#{updateTime}
+        </trim>
+
+        where userId=#{userId} and userState=0
+    </update>
+
+
+    <!--删除修改-->
+    <!--    <delete id="delUser" parameterType="com.hz.bean.User">-->
+    <!--    delete from user where userId =#{userId}-->
+    <!--</delete>-->
+
+    <update id="delUser" parameterType="com.hz.bean.User">
+        update user set userState=1 ,delUserTime=#{delUserTime} where userId=#{userId}
+    </update>
+
+    <update id="updateDec" parameterType="com.hz.bean.User">
+        update user set
+            declaration=#{declaration},
+            updateTime=#{updateTime}
+        where userId=#{userId} and userState=0
+    </update>
+
+</mapper>

@@ -1,0 +1,128 @@
+/*changeInfo*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.sep20{
+    width: 100px;
+    height: 20px;
+}
+
+#leftDiv{
+    width: 880px;
+    height: 900px;
+    margin-left: 60px;
+    position: absolute;
+}
+
+#photoDiv{
+    width: 150px;
+    height: 150px;
+    margin-left: 365px;
+}
+
+.sep30{
+    width: 500px;
+    height: 15px;
+}
+
+#infoTable{
+    width: 600px;
+    height: 300px;
+    border: 1px solid #000;
+    margin-left: 140px;
+    border-collapse: collapse;
+}
+
+#declarationDiv{
+    width: 600px;
+    height: auto;
+    border: 1px solid #000;
+    margin-left: 140px;
+}
+
+#personTxt{
+    width: 600px;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+#declaration{
+    width: 600px;
+    height: 180px;
+    font-style: italic;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#img1{
+    width: 150px;
+    height: 150px;
+}
+#changeDiv{
+    border-top: 5px double #000;
+}
+
+
+/*setInfo*/
+#setTable{
+    width: 600px;
+    height: 300px;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+#img{
+    width: 100px;
+    height: 100px;
+    margin-left: 200px;
+    margin-top: 20px;
+    border: 1px solid #000;
+}
+
+#setDiv{
+    width: 700px;
+    height: 1000px;
+    border: 1px solid #000;
+    margin-left: 100px;
+    margin-top: 20px;
+    position: absolute;
+}
+
+#headDiv{
+    width: 500px;
+    height: 180px;
+    margin-left: 100px;
+}
+
+#bodyDiv{
+    width: 600px;
+    height: 300px;
+    border: 1px solid #000;
+    margin-left: 50px;
+}
+
+#footDiv{
+    width: 600px;
+    height: 320px;
+    margin-left: 50px;
+}
+
+#textB{
+    max-width: 500px;
+    max-height: 150px;
+    min-width: 500px;
+    min-height: 150px;
+}
+
+#reBtn{
+    width: 150px;
+    height: 50px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 40px;
+}
